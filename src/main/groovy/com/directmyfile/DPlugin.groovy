@@ -1,5 +1,6 @@
 package com.directmyfile
 
+import com.directmyfile.tasks.*
 import org.gradle.api.Project
 import org.gradle.api.Plugin
 
