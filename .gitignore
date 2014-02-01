@@ -1,0 +1,5 @@
+repo
+build
+.gradle
+sample/build
+sample/.gradle

@@ -1,0 +1,20 @@
+apply plugin: 'java'
+apply plugin: 'd'
+
+buildscript {
+    repositories {
+        maven {
+            url uri('../repo')
+        }
+    }
+
+    dependencies {
+        classpath group: 'com.directmyfile', name: 'd', version: '1.0-SNAPSHOT'
+    }
+}
+
+d {
+    // Default values, set them as you please
+    //srcDir = 'src/main/d'
+    //linkedName = rootProject.name // output binary (executable/library)
+}
