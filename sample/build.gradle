@@ -1,4 +1,3 @@
-apply plugin: 'java'
 apply plugin: 'd'
 
 buildscript {
@@ -15,6 +14,6 @@ buildscript {
 
 d {
     // Default values, set them as you please
-    //srcDir = 'src/main/d'
-    //linkedName = rootProject.name // output binary (executable/library)
+    // srcDir = 'src/main/d'
+    // linkedName = rootProject.name // output binary (executable/library)
 }
