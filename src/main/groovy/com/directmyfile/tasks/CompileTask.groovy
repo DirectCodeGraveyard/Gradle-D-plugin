@@ -11,14 +11,13 @@ class CompileTask extends DefaultTask {
             include '**/*.d'
         }
 
-        def args = ['dmd']
-        args += '-of' + project.file('build/libs/' + project.d.linkedName)
-        args += '-od' + project.file('build/objects')
-
-        srcDir.each { File file ->
-            args += file.getAbsolutePath()
+        project.exec { ->
+            executable "dmd"
+            args("-of${project.file('build/libs/' + project.d.linkedName)}")
+            args("-od${project.file('build/objects')}")
+            srcDir.each { file ->
+                args(file.absolutePath)
+            }
         }
-
-        args.execute().text
     }
 }
