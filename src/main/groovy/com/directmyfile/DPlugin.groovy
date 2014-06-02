@@ -6,8 +6,6 @@ import org.gradle.api.Project
 
 class DPlugin implements Plugin<Project> {
     void apply(Project target) {
-        target.extensions.create('d', DExtension, target)
-
         target.task('compileD', type: CompileTask)
 
         if (target.tasks.hasProperty("build")) {
