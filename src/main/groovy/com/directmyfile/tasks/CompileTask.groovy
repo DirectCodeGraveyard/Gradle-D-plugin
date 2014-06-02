@@ -1,6 +1,9 @@
 package com.directmyfile.tasks
 
 import org.gradle.api.DefaultTask
+import org.gradle.api.tasks.InputDirectory
+import org.gradle.api.tasks.OutputDirectory
+import org.gradle.api.tasks.OutputFile
 import org.gradle.api.tasks.TaskAction
 
 class CompileTask extends DefaultTask {
@@ -12,14 +15,23 @@ class CompileTask extends DefaultTask {
 
     List<String> opts = []
 
+    @InputDirectory
+    File getSrcDir() {
+        project.file(srcDir)
+    }
+
+    @OutputDirectory
+    File getObjectsDir() {
+        project.file("${project.buildDir}/objects/")
+    }
+
+    @OutputFile
+    File getOutputFile() {
+        project.file("${project.buildDir}/libs/${linkedName}")
+    }
+
     @TaskAction
     def compileD() {
-
-        inputs.dir(srcDir)
-
-        outputs.dir("${project.buildDir}/objects")
-
-        outputs.dir("${project.buildDir}/libs/${linkedName}")
 
         def srcDir = project.fileTree(srcDir) {
             include '**/*.d'
@@ -30,8 +42,8 @@ class CompileTask extends DefaultTask {
         project.exec { ->
             executable compiler
             args(opts)
-            args("-of${project.file("${project.buildDir}/libs/${linkedName}")}")
-            args("-od${project.file("${project.buildDir}/objects")}")
+            args("-of${getOutputFile()}")
+            args("-od${getObjectsDir()}")
             srcDir.each { file ->
                 args(file.absolutePath)
             }
