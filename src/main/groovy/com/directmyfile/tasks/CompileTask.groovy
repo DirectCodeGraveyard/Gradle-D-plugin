@@ -14,6 +14,13 @@ class CompileTask extends DefaultTask {
 
     @TaskAction
     def compileD() {
+
+        inputs.dir(srcDir)
+
+        outputs.dir("${project.buildDir}/objects")
+
+        outputs.dir("${project.buildDir}/libs/${linkedName}")
+
         def srcDir = project.fileTree(srcDir) {
             include '**/*.d'
         }
